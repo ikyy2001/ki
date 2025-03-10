@@ -83,6 +83,7 @@ function setupWhatsAppRedirect() {
 }
 
 // Response Handling
+// Modifikasi fungsi showResponse untuk mengarahkan ke WhatsApp langsung
 function showResponse(type) {
     const happyResponse = document.getElementById('happyResponse');
     const sadResponse = document.getElementById('sadResponse');
@@ -94,6 +95,14 @@ function showResponse(type) {
         happyResponse.style.display = 'block';
         userResponse = 'yes';
         createHeartsAnimation();
+        
+        // Tambahkan redirect ke WhatsApp di sini
+        setTimeout(() => {
+            const phoneNumber = "6288289907355";
+            const message = "Aku juga suka kamu hehe";
+            const whatsappURL = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
+            window.open(whatsappURL, '_blank');
+        }, 1500); // Delay 1.5 detik
     } else {
         sadResponse.style.display = 'block';
         userResponse = 'no';
