@@ -165,32 +165,33 @@
     </div>
 
     <!-- Confession Page -->
-    <div id="confession" class="page">
-        <div class="confession-container">
-            <h2 class="pixel-title">I Have Crush On You</h2>
+   <!-- Confession Page - Modifikasi tombol "Ya, Aku Mau" menjadi link langsung -->
+<div id="confession" class="page">
+    <div class="confession-container">
+        <h2 class="pixel-title">I Have Crush On You</h2>
 
-            <i class="fas fa-heart big-heart"></i>
+        <i class="fas fa-heart big-heart"></i>
 
-            <p class="confession-message">Maukah kamu menjadi orang yang spesial dalam hidupku?</p>
+        <p class="confession-message">Maukah kamu menjadi orang yang spesial dalam hidupku?</p>
 
-            <div class="decision-buttons">
-                <button class="decision-btn yes-btn" onclick="showResponse('yes')">Ya, Aku Mau</button>
-                <button class="decision-btn no-btn" id="noButton">Maaf, Tidak</button>
-            </div>
+        <div class="decision-buttons">
+            <!-- Ubah tombol menjadi link WhatsApp dengan tampilan tombol -->
+            <a href="https://wa.me/6288289907355?text=Aku%20juga%20suka%20kamu%20hehe" target="_blank" class="decision-btn yes-btn" onclick="createHeartsAnimation(); showResponse('yes'); return true;">Ya, Aku Mau</a>
+            <button class="decision-btn no-btn" id="noButton">Maaf, Tidak</button>
+        </div>
 
-            <div class="response-message" id="happyResponse">
-                <p>Terima kasih! Kamu telah membuat hari ini menjadi hari terindah dalam hidupku! ❤️</p>
-                <button class="nav-btn next" onclick="nextPage()">Lanjut</button>
-            </div>
+        <div class="response-message" id="happyResponse">
+            <p>Terima kasih! Kamu telah membuat hari ini menjadi hari terindah dalam hidupku! ❤️</p>
+            <button class="nav-btn next" onclick="nextPage()">Lanjut</button>
+        </div>
 
-            <div class="response-message" id="sadResponse">
-                <p>Aku mengerti. Semoga kita tetap bisa menjadi teman baik. Terima kasih sudah membaca sampai
-                    akhir.</p>
-                <button class="nav-btn next" onclick="nextPage()">Lanjut</button>
-            </div>
+        <div class="response-message" id="sadResponse">
+            <p>Aku mengerti. Semoga kita tetap bisa menjadi teman baik. Terima kasih sudah membaca sampai
+                akhir.</p>
+            <button class="nav-btn next" onclick="nextPage()">Lanjut</button>
         </div>
     </div>
-
+</div>
     <!-- Response Page -->
     <div id="response" class="page">
         <div class="response-container">
