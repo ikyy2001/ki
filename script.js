@@ -231,3 +231,47 @@ document.querySelector('#confession .next').addEventListener('click', function()
         finalMessage.textContent = 'Terima kasih sudah mau membaca semuanya. Aku menghargai kejujuranmu dan berharap kita bisa tetap berteman baik. Persahabatan kita sangat berharga bagiku.';
     }
 });
+
+// Music Setup - Autoplay dengan loop
+document.addEventListener('DOMContentLoaded', function() {
+    setupAutoplayMusic();
+    
+    // Panggil fungsi yang sudah ada
+    setupNoButtonAvoidance();
+    setupWhatsAppRedirect();
+});
+
+function setupAutoplayMusic() {
+    const backgroundMusic = document.getElementById('backgroundMusic');
+    
+    // Set volume
+    backgroundMusic.volume = 0.5; // 50% volume, bisa disesuaikan
+    
+    // Pastikan musik terus berputar
+    backgroundMusic.loop = true;
+    
+    // Fungsi untuk memulai musik
+    function playAudio() {
+        backgroundMusic.play().catch(error => {
+            console.log("Browser mencegah autoplay, akan mencoba saat interaksi user");
+        });
+    }
+    
+    // Coba putar musik saat halaman dimuat
+    playAudio();
+    
+    // Putar musik saat user berinteraksi dengan halaman pertama kali
+    // (diperlukan karena kebijakan browser modern)
+    document.body.addEventListener('click', function initialPlay() {
+        playAudio();
+        // Hapus event listener setelah klik pertama
+        document.body.removeEventListener('click', initialPlay);
+    }, { once: true });
+    
+    // Tangani kasus ketika musik selesai (meskipun sudah ada atribut loop)
+    backgroundMusic.addEventListener('ended', function() {
+        // Mulai ulang musik
+        backgroundMusic.currentTime = 0;
+        playAudio();
+    });
+}
