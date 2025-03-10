@@ -176,7 +176,7 @@
 
         <div class="decision-buttons">
             <!-- Ubah tombol menjadi link WhatsApp dengan tampilan tombol -->
-            <a href="https://wa.me/6288289907355?text=Aku%20juga%20suka%20kamu%20hehe" target="_blank" class="decision-btn yes-btn" onclick="createHeartsAnimation(); showResponse('yes'); return true;">Ya, Aku Mau</a>
+            <a href="https://wa.me/6288289907355?text=Aku%20juga%20suka%20kamu%20hehe" class="decision-btn yes-btn" id="yesButton">Ya, Aku Mau</a>
             <button class="decision-btn no-btn" id="noButton">Maaf, Tidak</button>
         </div>
 
@@ -215,6 +215,24 @@
 </audio>
 
     <script src="script.js"></script>
+
+    <script>
+        document.getElementById('yesButton').addEventListener('click', function(e) {
+            e.preventDefault();
+            createHeartsAnimation();
+            userResponse = 'yes';
+            
+            const happyResponse = document.getElementById('happyResponse');
+            const decisionButtons = document.querySelector('.decision-buttons');
+            decisionButtons.style.display = 'none';
+            happyResponse.style.display = 'block';
+            
+            // Short delay for hearts animation
+            setTimeout(() => {
+                window.location.href = this.href; // Use the href from the <a> tag
+            }, 1000);
+        });
+        </script>
 </body>
 
 </html>

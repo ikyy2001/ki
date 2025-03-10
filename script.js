@@ -51,10 +51,12 @@ function restartPages() {
 }
 
 // Setup WhatsApp Redirect
+// Simplify the Yes button click handler
 function setupWhatsAppRedirect() {
     const yesBtn = document.querySelector('.yes-btn');
     
     yesBtn.addEventListener('click', function(e) {
+        // Prevent the default anchor behavior temporarily
         e.preventDefault();
         
         // Show hearts animation
@@ -63,22 +65,17 @@ function setupWhatsAppRedirect() {
         // Set user response for final page
         userResponse = 'yes';
         
-        // Delay before redirecting to WhatsApp
-        setTimeout(() => {
-            // Create WhatsApp link with predefined message and phone number
-            const phoneNumber = "6288289907355"; // Ganti dengan nomor yang diinginkan (format: kode negara tanpa tanda + diikuti nomor)
-            const message = "Aku juga suka kamu hehe";
-            const whatsappURL = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
-            
-            // Open WhatsApp in a new tab
-            window.open(whatsappURL, '_blank');
-            
-            // Show response and continue option
-            const happyResponse = document.getElementById('happyResponse');
-            const decisionButtons = document.querySelector('.decision-buttons');
-            decisionButtons.style.display = 'none';
-            happyResponse.style.display = 'block';
-        }, 1500); // 1.5 seconds delay
+        // Show response and hide buttons
+        const happyResponse = document.getElementById('happyResponse');
+        const decisionButtons = document.querySelector('.decision-buttons');
+        decisionButtons.style.display = 'none';
+        happyResponse.style.display = 'block';
+        
+        // Directly open WhatsApp link - no delay
+        const phoneNumber = "6288289907355";
+        const message = "Aku juga suka kamu hehe";
+        const whatsappURL = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
+        window.location.href = whatsappURL; // Use location.href instead of window.open
     });
 }
 
