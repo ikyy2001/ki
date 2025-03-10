@@ -7,6 +7,7 @@ let userResponse = '';
 // Initialize
 document.addEventListener('DOMContentLoaded', function() {
     setupNoButtonAvoidance();
+    setupWhatsAppRedirect();
     // Menghapus baris berikut untuk menonaktifkan fitur upload foto
     // setupPhotoUploadListeners();
 });
@@ -47,6 +48,38 @@ function prevPage() {
 
 function restartPages() {
     showPage(0);
+}
+
+// Setup WhatsApp Redirect
+function setupWhatsAppRedirect() {
+    const yesBtn = document.querySelector('.yes-btn');
+    
+    yesBtn.addEventListener('click', function(e) {
+        e.preventDefault();
+        
+        // Show hearts animation
+        createHeartsAnimation();
+        
+        // Set user response for final page
+        userResponse = 'yes';
+        
+        // Delay before redirecting to WhatsApp
+        setTimeout(() => {
+            // Create WhatsApp link with predefined message and phone number
+            const phoneNumber = "6288289907355"; // Ganti dengan nomor yang diinginkan (format: kode negara tanpa tanda + diikuti nomor)
+            const message = "Aku juga suka kamu hehe";
+            const whatsappURL = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
+            
+            // Open WhatsApp in a new tab
+            window.open(whatsappURL, '_blank');
+            
+            // Show response and continue option
+            const happyResponse = document.getElementById('happyResponse');
+            const decisionButtons = document.querySelector('.decision-buttons');
+            decisionButtons.style.display = 'none';
+            happyResponse.style.display = 'block';
+        }, 1500); // 1.5 seconds delay
+    });
 }
 
 // Response Handling
